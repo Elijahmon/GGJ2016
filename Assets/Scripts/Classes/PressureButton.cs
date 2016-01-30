@@ -3,9 +3,14 @@ using System.Collections;
 
 public class PressureButton : MonoBehaviour {
 
+    public enum COLORS { RED, GREEN, BLUE, YELLOW};
+    protected COLORS buttonColor;
+
     [SerializeField]
     Animator anim;
-
+    [SerializeField]
+    TestRoom testRoom;
+    
     bool isPressed = false;
 
 
@@ -26,5 +31,6 @@ public class PressureButton : MonoBehaviour {
     /// </summary>
     protected virtual void PressedActions()
     {
+        testRoom.ButtonPressed((int)buttonColor);
     }
 }

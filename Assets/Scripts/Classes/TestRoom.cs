@@ -8,14 +8,17 @@ public class TestRoom : MonoBehaviour {
     protected int timeToComplete;
     [SerializeField]
     protected Text timerText;
-    protected float currentTime;
+    protected int currentTime;
 
     [SerializeField]
     protected Collider roomZoneCollider;
 
     protected bool isComplete;
-    [SerializeField]
-    protected RandomizedBlinkRoutine routine;
+
+    const string timerFormat = "00.##";
+
+    protected int completionIndex = 0;
+
 
     /// <summary>
     /// Starts the timer for the test
@@ -38,19 +41,63 @@ public class TestRoom : MonoBehaviour {
             {
                 yield return new WaitForSeconds(1);
                 currentTime--;
-                timerText.text = string.Format("{0}:{1}:{2}", Mathf.Floor(currentTime / 3600), Mathf.Floor(currentTime / 60), currentTime % 60);
+                timerText.text = string.Format("{0}:{1}:{2}", Mathf.FloorToInt(currentTime / 3600).ToString(timerFormat), Mathf.FloorToInt(currentTime / 60).ToString(timerFormat), (currentTime % 60).ToString(timerFormat));
             }
             else
             {
                 timerText.text = string.Format("{0}:{1}:{2}", 0,0,0);
+                FailState();
             }
         }
+        yield return null;
     }
     /// <summary>
     /// Called when the timer runs out and the player has failed the test
     /// </summary>
     protected virtual void FailState()
     {
+        isComplete = true;
+       
+    }
+    protected virtual void SuccessState()
+    {
+        isComplete = true;
+    }
+
+    public virtual void ButtonPressed(int colorID)
+    {
+        switch(colorID)
+        {
+            case 0:
+                RedPressed();
+                break;
+            case 1:
+                GreenPressed();
+                break;
+            case 2:
+                BluePressed();
+                break;
+            case 3:
+                YellowPressed();
+                break;
+        }
+    }
+
+    protected virtual void RedPressed()
+    {
 
     }
+    protected virtual void GreenPressed()
+    {
+
+    }
+    protected virtual void BluePressed()
+    {
+
+    }
+    protected virtual void YellowPressed()
+    {
+
+    }
+
 }
