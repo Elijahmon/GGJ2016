@@ -13,6 +13,15 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     float ySensitivity;
 
+    [SerializeField]
+    float yLimit;
+
+
+
+    void Awake()
+    {
+    }
+
     void Update()
     {
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
@@ -23,8 +32,8 @@ public class CameraController : MonoBehaviour
 
     void RotateCamera(float x, float y)
     {
-        transform.RotateAround(targetTransform.position, Vector3.up, x * xSensitivity);
-        transform.RotateAround(targetTransform.position, Vector3.right, -y * ySensitivity);
-        transform.LookAt(targetTransform);
+        cameraTransform.RotateAround(targetTransform.position, Vector3.up, x * xSensitivity);
+        cameraTransform.RotateAround(targetTransform.position, Vector3.right, -y * ySensitivity);
+        cameraTransform.LookAt(targetTransform);
     }
 }
