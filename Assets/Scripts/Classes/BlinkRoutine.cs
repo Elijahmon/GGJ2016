@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class BlinkRoutine : MonoBehaviour {
 
+    public enum COLORS { RED, GREEN, BLUE, YELLOW}
+
     [SerializeField]
-    protected List<BlinkHandler> blinkers;
+    protected COLORS[] Routine;
+    [SerializeField]
+    protected BlinkHandler[] blinkers;
 
     public bool complete = false;
 
