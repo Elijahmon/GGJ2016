@@ -10,11 +10,11 @@ public class TestBlinker : BlinkRoutine
         {
             blinkers[0].Blink();
             yield return PAUSE;
-            blinkers[0].Blink();
+            blinkers[1].Blink();
             yield return PAUSE;
             blinkers[0].Blink();
             yield return PAUSE;
-            blinkers[0].Blink();
+            blinkers[1].Blink();
             yield return PAUSE;
             blinkers[0].Blink();
             yield return ENDPAUSE;
