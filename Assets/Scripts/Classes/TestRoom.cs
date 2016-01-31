@@ -69,6 +69,8 @@ public class TestRoom : MonoBehaviour {
 
     public virtual void ButtonPressed(int colorID)
     {
+        if (isComplete)
+            return;
         switch(colorID)
         {
             case 0:
