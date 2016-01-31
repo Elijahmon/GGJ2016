@@ -10,11 +10,8 @@ public class TestRoom : MonoBehaviour {
     protected Text timerText;
     protected int currentTime;
 
-    [SerializeField]
-    protected Collider roomZoneCollider;
-
     protected bool isComplete;
-
+    protected bool started;
     const string timerFormat = "00.##";
 
     protected int completionIndex = 0;
@@ -28,7 +25,13 @@ public class TestRoom : MonoBehaviour {
         currentTime = timeToComplete;
         StartCoroutine(UpdateTimer());
     }
-
+    /// <summary>
+    /// Starts the timer and logic for the test
+    /// </summary>
+    public virtual void StartTest()
+    {
+        
+    }
     /// <summary>
     /// Updates the Timer in a Coroutine. Also handles failstate
     /// </summary>

@@ -16,11 +16,16 @@ public class TestRoom1 : TestRoom
     [SerializeField]
     YellowButton yellowButton;
 
-    void Awake()
+
+    public override void StartTest()
     {
-        StartTimer();
+        if (!started)
+        {
+            Debug.Log("Starting Test");
+            StartTimer();
+            started = true;
+        }
     }
-    
     protected override void RedPressed()
     {
         if(routine.GetColorAt(completionIndex) == 0)
@@ -85,7 +90,7 @@ public class TestRoom1 : TestRoom
         }
         else
         {
-            Debug.Log("Incorrect");
+            //Debug.Log("Incorrect");
             completionIndex = 0;
         }
     }
