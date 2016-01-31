@@ -8,6 +8,8 @@ public class MovementController : MonoBehaviour
     Transform targetTransform;
     [SerializeField]
     FaceMovementDirection graphicsSync;
+    [SerializeField]
+    AudioManager SFXManager;
 
     [SerializeField]
     int forwardSpeed;
@@ -19,6 +21,11 @@ public class MovementController : MonoBehaviour
     int maxStrafeSpeed;
     [SerializeField]
     int jumpVelocity;
+
+    [SerializeField]
+    AudioClip run_SFX;
+    [SerializeField]
+    AudioClip jump_SFX;
 
     Vector3 forwardDirection;
     bool grounded = true;
@@ -94,6 +101,10 @@ public class MovementController : MonoBehaviour
             playerRigidbody.AddForce(forwardDirection * (v * forwardSpeed));
         }
         graphicsSync.SetMovementDirection(transform.InverseTransformDirection(playerRigidbody.velocity));
+        if (grounded)
+        {
+            SFXManager.PlaySoundEffect(run_SFX);
+        }
     }
     void Strafe(float h)
     {
@@ -104,9 +115,14 @@ public class MovementController : MonoBehaviour
             playerRigidbody.AddForce(rightDirection * (h * strafeSpeed));
         }
         graphicsSync.SetMovementDirection(transform.InverseTransformDirection(playerRigidbody.velocity));
+        if (grounded)
+        {
+            SFXManager.PlaySoundEffect(run_SFX);
+        }
     }
     void Jump()
     {
+        SFXManager.PlaySoundEffect(jump_SFX);
         grounded = false;
         playerRigidbody.AddForce(Vector3.up * jumpVelocity);
     }

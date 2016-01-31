@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RandomizedWallPattern : WallPattern {
 
+    [SerializeField]
+    protected int patternLength;
 	void Awake()
     {
         CreateRandomPattern();
@@ -10,10 +12,10 @@ public class RandomizedWallPattern : WallPattern {
     
     void CreateRandomPattern()
     {
-        pattern = new COLORS[6];
+        pattern = new COLORS[patternLength];
         for (int i = 0; i < pattern.Length; i++)
         {
-            pattern[i] = (COLORS)Random.Range(0, 3);
+            pattern[i] = (COLORS)Random.Range(0, 4);
         }
     }
 }

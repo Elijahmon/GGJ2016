@@ -13,7 +13,7 @@ public class RandomizedBlinkRoutine : BlinkRoutine {
         routine = new COLORS[8];
         for(int i = 0; i < routine.Length; i++)
         {
-            routine[i] = (COLORS)Random.Range(0, 3);
+            routine[i] = (COLORS)Random.Range(0, 4);
         }
     }
 

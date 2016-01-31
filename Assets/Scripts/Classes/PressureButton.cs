@@ -31,6 +31,7 @@ public class PressureButton : MonoBehaviour {
     /// </summary>
     protected virtual void PressedActions()
     {
+        Debug.Log("Pressed");
         testRoom.ButtonPressed((int)buttonColor);
     }
 }
