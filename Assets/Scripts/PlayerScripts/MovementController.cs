@@ -83,7 +83,7 @@ public class MovementController : MonoBehaviour
         if(Physics.Raycast(playerRigidbody.transform.position, Vector3.down, .7f))
         {
             grounded = true;
-            graphicsSync.SetMovementDirection(transform.InverseTransformDirection(playerRigidbody.velocity));
+            
         }
         else
         {
@@ -93,14 +93,14 @@ public class MovementController : MonoBehaviour
 
     void MoveForward(float v)
     {
-        Vector3 forwardDirection = targetTransform.TransformDirection(Vector3.forward);
+        forwardDirection = targetTransform.TransformDirection(Vector3.forward);
         forwardDirection.y = 0;
         if (!(playerRigidbody.velocity.magnitude > maxForwardSpeed))
         {
 
             playerRigidbody.AddForce(forwardDirection * (v * forwardSpeed));
         }
-        graphicsSync.SetMovementDirection(transform.InverseTransformDirection(playerRigidbody.velocity));
+        graphicsSync.SetMovementDirection(transform.InverseTransformDirection(forwardDirection));
         if (grounded)
         {
             SFXManager.PlaySoundEffect(run_SFX);
@@ -108,13 +108,15 @@ public class MovementController : MonoBehaviour
     }
     void Strafe(float h)
     {
+        forwardDirection = targetTransform.TransformDirection(Vector3.forward);
+        forwardDirection.y = 0;
         Vector3 rightDirection = targetTransform.TransformDirection(Vector3.right);
         rightDirection.y = 0;
         if (!(playerRigidbody.velocity.magnitude > maxStrafeSpeed))
         {
             playerRigidbody.AddForce(rightDirection * (h * strafeSpeed));
         }
-        graphicsSync.SetMovementDirection(transform.InverseTransformDirection(playerRigidbody.velocity));
+        graphicsSync.SetMovementDirection(transform.InverseTransformDirection(forwardDirection));
         if (grounded)
         {
             SFXManager.PlaySoundEffect(run_SFX);
