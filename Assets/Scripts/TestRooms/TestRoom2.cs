@@ -20,7 +20,7 @@ public class TestRoom2 : TestRoom
     {
         if (!started)
         {
-            //Debug.Log("Starting Test");
+            Debug.Log("Starting Test");
             StartTimer();
             started = true;
             pattern.PopulatePattern();

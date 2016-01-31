@@ -60,7 +60,7 @@ public class TestRoom : MonoBehaviour {
     protected virtual void FailState()
     {
         isComplete = true;
-       
+        GameObject.FindObjectOfType<GameStateController>().GetComponent<GameStateController>().FailedTest();
     }
     protected virtual void SuccessState()
     {
